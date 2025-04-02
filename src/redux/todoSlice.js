@@ -45,15 +45,11 @@ export const deleteFetch=createAsyncThunk(
     }
 )
 
-
-
-
-
 export const newTodoFetch=createAsyncThunk(
     '/todo/newTodoFetch',
     async function (text,{rejectWithValue,dispatch}) {
         try {
-            const todo={
+            const todo={                
                 title:text,
                 userId:1,            
                 completed:false
@@ -73,6 +69,8 @@ export const newTodoFetch=createAsyncThunk(
             const data=await response.json();            
             
             dispatch(addTodo(data))
+            console.log(data);
+            
             
         } catch (error) {
             return rejectWithValue(error.massage)
@@ -136,8 +134,9 @@ const todoSlice=createSlice({
 
         togleTodo(state,action){                                            
             state.spisok=state.spisok.map(c=>{
-                if(c.id===action.payload.id) 
-                    return  c.checked=!c.checked
+                if(c.id===action.payload.id){                   
+                    return {...c, checked:!c.checked}
+                }                  
                 return c;
             })
         }

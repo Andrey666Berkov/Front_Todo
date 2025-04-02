@@ -12,9 +12,9 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchTodo());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTodo());
+  }, [dispatch]);
 
   return (
     <div className="bg-yellow-100">
