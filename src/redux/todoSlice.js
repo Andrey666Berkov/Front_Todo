@@ -45,6 +45,10 @@ export const deleteFetch=createAsyncThunk(
     }
 )
 
+
+
+
+
 export const newTodoFetch=createAsyncThunk(
     '/todo/newTodoFetch',
     async function (text,{rejectWithValue,dispatch}) {
@@ -66,8 +70,7 @@ export const newTodoFetch=createAsyncThunk(
                 throw new Error(`Cant't much add todo id: ${todo.id}`);                
             }
 
-            const data=await response.json();
-            console.log(data);
+            const data=await response.json();            
             
             dispatch(addTodo(data))
             
@@ -122,15 +125,9 @@ const todoSlice=createSlice({
 
     reducers:{
         addTodo(state,action){
-
-            const todo={
-                id:new Date().toISOString(),
-                title:action.payload.text,
-                checked:false
-            }
-           
-                state.spisok.push(todo)
-                            
+                     
+           state.spisok.push(action.payload)
+                     
         },
 
         removeTodo(state,action){
@@ -140,7 +137,7 @@ const todoSlice=createSlice({
         togleTodo(state,action){                                            
             state.spisok=state.spisok.map(c=>{
                 if(c.id===action.payload.id) 
-                    return {id:c.id,title:c.title, checked:!c.checked}
+                    return  c.checked=!c.checked
                 return c;
             })
         }

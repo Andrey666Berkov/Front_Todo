@@ -1,15 +1,10 @@
 import { useDispatch } from "react-redux";
-import {
-  deleteFetch,
-  removeTodo,
-  togleTodo,
-  toggleFecthTodos,
-} from "../redux/todoSlice";
+import { deleteFetch, toggleFecthTodos } from "../redux/todoSlice";
 
 const TodoItem = ({ id, title, checked }) => {
   const dispatch = useDispatch();
-  const removeTask = () => dispatch(removeTodo({ id }));
-  const toggleTask = () => dispatch(togleTodo({ id }));
+  const removeTask = () => dispatch(deleteFetch(id));
+  const toggleTask = () => dispatch(toggleFecthTodos(id));
 
   return (
     <div key={id} className="flex justify-center">

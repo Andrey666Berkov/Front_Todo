@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { addTodo, newTodoFetch } from "../redux/todoSlice";
+import { newTodoFetch } from "../redux/todoSlice";
 
 const AddItems = ({ text, setText }) => {
   const dispatch = useDispatch();
 
   const add = (text) => {
-    dispatch(addTodo({ text }));
+    dispatch(newTodoFetch(text));
     setText("");
   };
 
